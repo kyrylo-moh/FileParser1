@@ -6,8 +6,6 @@ import java.util.Scanner;
 public class Input {
 
     private Scanner scanner = new Scanner(System.in);
-    Output output;
-
 
     public String getLine() {
         System.out.println("Enter your string");

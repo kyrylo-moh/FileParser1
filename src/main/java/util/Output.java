@@ -6,8 +6,4 @@ public class Output {
         System.out.println("Do you want continue? [Yes/No]");
     }
 
-    public void getMsgCorrectValue() {
-        System.out.println("Please enter correct value");
-    }
-
 }
