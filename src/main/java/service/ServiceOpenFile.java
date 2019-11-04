@@ -1,28 +1,35 @@
 package service;
 
 import model.FileModel;
+import util.Input;
+import util.Output;
+import util.Validator;
 
 import java.io.*;
 
 class ServiceOpenFile {
 
-    private FileModel fileModel = new FileModel("D:\\fileParserTest.txt");
+    private Input input = new Input();
+    private Output output = new Output();
+    private Validator validator = new Validator();
+    private FileModel fileModel = new FileModel(input.getPath());
+
     BufferedReader openFileRead(File file) throws FileNotFoundException {
-        if (file.exists()) {
+        if (validator.isFileExist(file)) {
             return new BufferedReader(new FileReader(file));
         }
         else {
-            System.out.println("File does not exist");
+            output.printFileExist();
             return null;
         }
     }
 
     BufferedWriter openFileWrite(File file) {
         try {
-            if (file.exists()) {
+            if (validator.isFileExist(file)) {
                 return new BufferedWriter(new FileWriter(file));
             } else {
-                System.out.println("File does not exist");
+                output.printFileExist();
                 return null;
             }
         } catch (IOException e) {
@@ -32,7 +39,7 @@ class ServiceOpenFile {
     }
 
     File openFile() {
-        return new File(fileModel.getPathToFile());
+            return new File(fileModel.getPathToFile());
     }
 
 }

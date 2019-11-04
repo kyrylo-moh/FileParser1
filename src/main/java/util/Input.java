@@ -1,11 +1,12 @@
 package util;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
 
     private Scanner scanner = new Scanner(System.in);
+    private Output output = new Output();
+    private Validator validator = new Validator();
 
     public String getLine() {
         System.out.println("Enter your string");
@@ -17,15 +18,26 @@ public class Input {
         return scanner.next();
     }
 
+    public String getPath() {
+        System.out.println("Enter your path file: ");
+        return scanner.next();
+    }
+
     public int getChoice() {
         System.out.println("Enter number of task (1, 2): ");
-        try {
-            return scanner.nextInt();
+        int num;
+        if (scanner.hasNextInt()) {
+            num = scanner.nextInt();
+            if (validator.isPositiveNum(num)) {
+                output.printNotZero();
+                scanner.next();
+                num = getChoice();
+            }
+        } else {
+            scanner.next();
+            num = getChoice();
         }
-        catch (InputMismatchException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return 0;
+        return num;
     }
 
 }

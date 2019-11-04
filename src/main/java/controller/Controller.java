@@ -38,7 +38,7 @@ public class Controller {
 
         instruction.getInstruction();
         int choiceNum = input.getChoice();
-        while (!validator.numIsPositive(choiceNum)) {
+        while (validator.isPositiveNum(choiceNum)) {
             choiceNum = input.getChoice();
         }
         switch (choiceNum) {
@@ -53,11 +53,11 @@ public class Controller {
         }
     }
 
-    public void repeat() {
+    public void runController() {
         String answer;
         do {
             choice();
-            output.getAnswer();
+            output.printQuestion();
             answer = input.getAnswer();
         } while (answer.equalsIgnoreCase("y") ||
                 answer.equalsIgnoreCase("yes"));
